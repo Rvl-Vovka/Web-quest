@@ -3,8 +3,12 @@
     src: url(Oswald.woff2);
 }
 @font-face {
-    font-family: "JetBrains";
-    src: url(JetBrainsMono.woff2) format('woff2');
+    font-family: "JetBrains-ExtraBold";
+    src: url(JetBrainsMono-ExtraBold.woff2) format('woff2');
+}
+@font-face {
+    font-family: "JetBrains-ExtraLight";
+    src: url(JetBrainsMono-ExtraLight.woff2) format('woff2');
 }
 
 html {
@@ -12,9 +16,8 @@ html {
     scroll-behavior: smooth;
 }
 body{
-    /* background-color: lightgreen; */
     background-color: #f9f5e9;
-    font-family: "JetBrains";
+    font-family: "JetBrains-ExtraLight";
     display: flex;
     flex-direction: column;
     min-height: calc(100vh - 16px);
@@ -27,10 +30,13 @@ div{
 h1{
     color: #4e4e4e;
     text-align: center;
-    font-size: 2.5vw;
+    font-size: 1.2vw;
     text-align: justify;
     margin-left: 20vw;
     margin-right: 20vw;
+}
+b{
+    font-family: "JetBrains-ExtraBold";
 }
 h2{
     text-align: center;
@@ -39,6 +45,22 @@ h2{
 h3{
     text-align: center;
     font-size: 2vw;
+}
+select{
+    margin-left: 5vw;
+    margin-right: 5vw;
+    margin-top: 2vw;
+    width: 88vw;
+    font-size: 1.5vw;
+    line-height: 1.5vw;
+    align-items: center;
+    background-image: linear-gradient(144deg, #516e4e, #32592e 50%, #1d5218);
+    border: 0;
+    border-radius: 8px;
+    box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
 }
 button{
     font-size: 4vw;

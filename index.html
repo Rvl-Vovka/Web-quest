@@ -6,30 +6,29 @@
         <title>Веб-квест</title>
         <link rel="stylesheet" href="styles.css"/>
         <link rel="icon" type="image/x-icon" href="favicon.ico">
-        <!-- <link rel="preload" href="JetBrainsMono.woff2" as="font" type="font/woff2" crossorigin> -->
     </head>
     <body>
-        <h1 id="question" style="font-size: 2vw;">Добро пожаловать в «Правовой навигатор»!<br>Это не обычный тест. Это симулятор реальных ситуаций, в которые может попасть подросток.<br>Здесь тебе будут писать «незнакомцы», предлагать «лёгкий заработок» или просить «подержать пакет». Твоя задача ‒ распознать ловушку и сделать правильный выбор.<br><br>Как играть:<br>Нажми кнопку «Начать».<br>Внимательно читай сообщение и выбирай один из вариантов ответа.<br>Если ты ошибешься — система покажет, к каким последствиям это привело бы в реальной жизни. Ты сможешь попробовать снова.<br>Пройди все 10 ловушек.<br>Главное правило: если ты пройдешь все ситуации без ошибок ‒ получишь сертификат правовой грамотности. Если собьешься ‒ не страшно, система предложит пройти заново, чтобы ты запомнил, как действовать правильно.<br><br>Готов? Жми «Начать»!</h1>
+        <h1 id="question">Добро пожаловать в «Правовой навигатор»!<br>Это не обычный тест. Это симулятор реальных ситуаций, в которые может попасть подросток.<br>Здесь тебе будут писать «незнакомцы», предлагать «лёгкий заработок» или просить «подержать пакет». Твоя задача ‒ распознать ловушку и сделать правильный выбор.<br><br>Как играть:<br>Нажми кнопку «Начать».<br>Внимательно читай сообщение и выбирай один из вариантов ответа.<br>Если ты ошибешься — система покажет, к каким последствиям это привело бы в реальной жизни. Ты сможешь попробовать снова.<br>Пройди все 10 ловушек.<br>Главное правило: если ты пройдешь все ситуации без ошибок ‒ получишь сертификат правовой грамотности. Если собьешься ‒ не страшно, система предложит пройти заново, чтобы ты запомнил, как действовать правильно.<br><br>Готов? Жми «Начать»!</h1>
         <div>
             <button style="display: none;" id="b1" onclick="f1()">Option 1 loading...</button>
             <button style="display: none;" id="b2" onclick="f2()">Option 2 loading...</button>
             <button style="display: none;" id="b3" onclick="f3()">Option 3 loading...</button>
         </div>
         <select id="situation">
-            <option value="1" selected>1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10</option>
+            <option value="1" selected>Сценарий 1 - Подработка</option>
+            <option value="2">Сценарий 2 - Друг просит подержать</option>
+            <option value="3">Сценарий 3 - Попробуй за компанию</option>
+            <option value="4">Сценарий 4 - Ты мне должен</option>
+            <option value="5">Сценарий 5 - Курьер</option>
+            <option value="6">Сценарий 6 - Вписка</option>
+            <option value="7">Сценарий 7 - Игра</option>
+            <option value="8">Сценарий 8 - Помощь другу</option>
+            <option value="9">Сценарий 9 - Анонимный чат</option>
+            <option value="10">Сценарий 10 - Подарок от незнакомца</option>
         </select>
         <button style="margin-left: 5vw; margin-right: 5vw; margin-top: 5vw; width: 88vw;" id="start" onclick="initialize()">Начать</button>
 
-        <h4 id="end">2026 Веб-квест от rvl из 11 "В"</h4>
+        <h4 id="end">2026 Веб-квест Рыжковского Владимира Леонидовича из 11 "В"</h4>
         <script src="fontkit.umd.min.js"></script>
         <script src="pdf-lib.min.js"></script>
         <script src="script.js"></script>

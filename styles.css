@@ -54,12 +54,11 @@ select{
     font-size: 1.5vw;
     line-height: 1.5vw;
     align-items: center;
-    background-image: linear-gradient(144deg, #516e4e, #32592e 50%, #1d5218);
+    background-image: linear-gradient(144deg, #718e6e, #52794e 50%, #3d7238);
     border: 0;
     border-radius: 8px;
     box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
     box-sizing: border-box;
-    color: #FFFFFF;
     cursor: pointer;
 }
 button{

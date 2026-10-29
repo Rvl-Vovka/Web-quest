@@ -1,0 +1,89 @@
+@font-face {
+    font-family: "Oswald";
+    src: url(Oswald.woff2);
+}
+@font-face {
+    font-family: "JetBrains";
+    src: url(JetBrainsMono.woff2) format('woff2');
+}
+
+html {
+    scroll-padding-top: 5vw;
+    scroll-behavior: smooth;
+}
+body{
+    /* background-color: lightgreen; */
+    background-color: #f9f5e9;
+    font-family: "JetBrains";
+    display: flex;
+    flex-direction: column;
+    min-height: calc(100vh - 16px);
+}
+
+div{
+    display: flex;
+    align-items: center;
+}
+h1{
+    color: #4e4e4e;
+    text-align: center;
+    font-size: 2.5vw;
+    text-align: justify;
+    margin-left: 20vw;
+    margin-right: 20vw;
+}
+h2{
+    text-align: center;
+    font-size: 2.5vw;
+}
+h3{
+    text-align: center;
+    font-size: 2vw;
+}
+button{
+    font-size: 4vw;
+    line-height: 5vw;
+    width: calc(33vw - 12px);
+    align-items: center;
+    background-image: linear-gradient(144deg, #948675, #695d4e 50%, #5c4932);
+    border: 0;
+    border-radius: 8px;
+    box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+input{
+    field-sizing: content;
+    min-width: 20vw;
+    line-height: 5vw;
+    align-items: center;
+    background-image: linear-gradient(144deg, #516e4e, #32592e 50%, #1d5218);
+    border: 0;
+    border-radius: 8px;
+    box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    font-size: 24px;
+}
+p{
+    color: black;
+    margin-left: 5vw;
+    margin-right: 5vw;
+    font-size: 1.5625vw;
+    line-height: 2.1875vw;
+    text-align: justify;
+    text-indent: 6vw;
+}
+
+h4{
+    anchorn: bottom;
+    border-top:solid 0.5vh #2ba8c2;
+    margin-left: -8px;
+    width: calc(100% + 16px);
+    text-align: center;
+    font-family: "Oswald";
+    font-size: 2vw;
+    height: 1vw;
+    margin-top: auto;
+}

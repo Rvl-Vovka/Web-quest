@@ -33,6 +33,59 @@ async function showCertificate() {
     document.getElementById('certificate_shower').textContent = "Сгенерировать сертификат";
 }
 
+async function sleep_async(sec){
+    sleeping = true;
+    await new Promise(resolve => setTimeout(resolve, sec*1000));
+    sleeping = false;
+    return 0;
+}
+
+function wait_until_sleep_end(){
+    return new Promise(resolve => {
+        const check = () => {
+            if (sleeping === false) {
+                resolve();
+            }
+            else {
+                setTimeout(check, 10); // Check every 10ms
+            }
+        };
+        check();
+    });
+}
+
+async function sleep(sec){
+    sleep_async(sec);
+    await wait_until_sleep_end();
+    return 0;
+}
+
+function initialize_rng(){
+    for(j=0; j<10; j++){
+        rng_mask_3[j][0]=Math.floor(Math.random() * 3);
+        rng_mask_3[j][1]=Math.floor(Math.random() * 2);
+        if(rng_mask_3[j][0]==rng_mask_3[j][1]){
+            rng_mask_3[j][1]++;
+        }
+        for(i=0; i<3; i++){
+            if(rng_mask_3[j][0]!=i && rng_mask_3[j][1]!=i){
+                rng_mask_3[j][2]=i;
+            }
+        }
+        rng_mask_2[j][0]=Math.floor(Math.random() * 2);
+        rng_mask_2[j][1]=!rng_mask_2[j][0]-0
+    }
+}
+
+function activate_rng_mask(id){
+    if(situations[current_situation][current_num][1].length==2){
+        return rng_mask_2[current_situation][id]
+    }
+    else{
+        return rng_mask_3[current_situation][id]
+    }
+}
+
 situations=[
 [ // 1
     ["Ты взял пакет и пошёл по адресу. Там тебя уже ждали сотрудники милиции. Тебя задержали, а родителей вызвали в отделение. Вербовщик остался в стороне, потому что все риски он переложил на тебя.<br><br><b>Итог:</b> Вербовщики используют детей, потому что рассчитывают на то, что те испугаются и промолчат. «Назад пути нет» всегда обман. Выход есть, и это разговор со взрослым.<br><br><b>Кнопка SOS:</b> «Что делать, если ты уже согласился? Немедленно прекрати общение, заблокируй аккаунт, расскажи родителям или педагогу. Позвони в милицию по телефону 102. Ты можешь предотвратить беду».",
@@ -265,8 +318,33 @@ situations=[
 ]
 ];
 perfect_completion=true;
-current_situation=0
+current_situation=0;
 current_num = 1;
+sleeping=false;
+rng_mask_3=[
+    [0, 0, 0],
+    [0, 0, 0],
+    [0, 0, 0],
+    [0, 0, 0],
+    [0, 0, 0],
+    [0, 0, 0],
+    [0, 0, 0],
+    [0, 0, 0],
+    [0, 0, 0],
+    [0, 0, 0]
+];
+rng_mask_2=[
+    [0, 0],
+    [0, 0],
+    [0, 0],
+    [0, 0],
+    [0, 0],
+    [0, 0],
+    [0, 0],
+    [0, 0],
+    [0, 0],
+    [0, 0],
+];
 function activateEnding(ending){
     document.getElementById('question').innerHTML = situations[current_situation][0][ending-1];
     document.getElementById('question').style.fontSize = "2vw";
@@ -285,6 +363,9 @@ function changeTo(num){
         activateEnding(num*-1);
         return 0;
     }
+    document.getElementById('b1').style.backgroundImage = "linear-gradient(144deg, #948675, #695d4e 50%, #5c4932)";
+    document.getElementById('b2').style.backgroundImage = "linear-gradient(144deg, #948675, #695d4e 50%, #5c4932)";
+    document.getElementById('b3').style.backgroundImage = "linear-gradient(144deg, #948675, #695d4e 50%, #5c4932)";
     num++;
     current_num=num;
     document.getElementById('b1').style.height = ``;
@@ -292,8 +373,8 @@ function changeTo(num){
     document.getElementById('b3').style.height = ``;
     document.getElementById('question').innerHTML = situations[current_situation][num][0];
     if(situations[current_situation][num][1].length==2){
-        document.getElementById('b1').textContent = situations[current_situation][num][1][0][0];
-        document.getElementById('b2').textContent = situations[current_situation][num][1][1][0];
+        document.getElementById('b1').textContent = situations[current_situation][num][1][activate_rng_mask(0)][0];
+        document.getElementById('b2').textContent = situations[current_situation][num][1][activate_rng_mask(1)][0];
         document.getElementById('b1').style.width = "calc(50vw - 18px)";
         document.getElementById('b2').style.width = "calc(50vw - 18px)";
         document.getElementById('b3').style.display = "none";
@@ -306,9 +387,9 @@ function changeTo(num){
         document.getElementById('b2').style.height = `${max_height}px`;
     }
     if(situations[current_situation][num][1].length==3){
-        document.getElementById('b1').textContent = situations[current_situation][num][1][0][0];
-        document.getElementById('b2').textContent = situations[current_situation][num][1][1][0];
-        document.getElementById('b3').textContent = situations[current_situation][num][1][2][0];
+        document.getElementById('b1').textContent = situations[current_situation][num][1][activate_rng_mask(0)][0];
+        document.getElementById('b2').textContent = situations[current_situation][num][1][activate_rng_mask(1)][0];
+        document.getElementById('b3').textContent = situations[current_situation][num][1][activate_rng_mask(2)][0];
         document.getElementById('b1').style.width = "calc(33vw - 12px)";
         document.getElementById('b2').style.width = "calc(33vw - 12px)";
         document.getElementById('b3').style.display = "";
@@ -351,21 +432,71 @@ function reset(){
         document.getElementById('name_input').remove();
     }
 }
-function f1(){
-    if(situations[current_situation][current_num][1][0][2]==-1){
-        perfect_completion=false;
+async function f1(){
+    if(sleeping){
+        sleeping=false;
+        return 0;
     }
-    changeTo(situations[current_situation][current_num][1][0][1]);
-}
-function f2(){
-    if(situations[current_situation][current_num][1][1][2]==-1){
-        perfect_completion=false;
+    if(situations[current_situation][current_num][1][activate_rng_mask(0)][2]==-1){perfect_completion=false;}
+    if(situations[current_situation][current_num][1][activate_rng_mask(0)][2]==1){
+        document.getElementById('question').innerHTML = "<b>Верно! Ты сохранил безопасность!</b>";
+        document.getElementById('b1').style.backgroundImage = "linear-gradient(144deg, #009900, #009900 50%, #009900)";
     }
-    changeTo(situations[current_situation][current_num][1][1][1]);
-}
-function f3(){
-    if(situations[current_situation][current_num][1][2][2]==-1){
-        perfect_completion=false;
+    if(situations[current_situation][current_num][1][activate_rng_mask(0)][2]==0){
+        document.getElementById('question').innerHTML = "<b>Осторожно, это может быть опасно!</b>";
+        document.getElementById('b1').style.backgroundImage = "linear-gradient(144deg, #999900, #999900 50%, #999900)";
     }
-    changeTo(situations[current_situation][current_num][1][2][1]);
+    if(situations[current_situation][current_num][1][activate_rng_mask(0)][2]==-1){
+        document.getElementById('question').innerHTML = "<b>Твоя безопасность под угрозой!<br>Сертификат не получишь.</b>";
+        document.getElementById('b1').style.backgroundImage = "linear-gradient(144deg, #990000, #990000 50%, #990000)";
+    }
+
+    await sleep(3);
+    changeTo(situations[current_situation][current_num][1][activate_rng_mask(0)][1]);
 }
+async function f2(){
+    if(sleeping){
+        sleeping=false;
+        return 0;
+    }
+    if(situations[current_situation][current_num][1][activate_rng_mask(1)][2]==-1){perfect_completion=false;}
+    if(situations[current_situation][current_num][1][activate_rng_mask(1)][2]==1){
+        document.getElementById('question').innerHTML = "<b>Верно! Ты сохранил безопасность!</b>";
+        document.getElementById('b2').style.backgroundImage = "linear-gradient(144deg, #009900, #009900 50%, #009900)";
+    }
+    if(situations[current_situation][current_num][1][activate_rng_mask(1)][2]==0){
+        document.getElementById('question').innerHTML = "<b>Осторожно, это может быть опасно!</b>";
+        document.getElementById('b2').style.backgroundImage = "linear-gradient(144deg, #999900, #999900 50%, #999900)";
+    }
+    if(situations[current_situation][current_num][1][activate_rng_mask(1)][2]==-1){
+        document.getElementById('question').innerHTML = "<b>Твоя безопасность под угрозой!<br>Сертификат не получишь.</b>";
+        document.getElementById('b2').style.backgroundImage = "linear-gradient(144deg, #990000, #990000 50%, #990000)";
+    }
+
+    await sleep(3);
+    changeTo(situations[current_situation][current_num][1][activate_rng_mask(1)][1]);
+}
+async function f3(){
+    if(sleeping){
+        sleeping=false;
+        return 0;
+    }
+    if(situations[current_situation][current_num][1][activate_rng_mask(2)][2]==-1){perfect_completion=false;}
+    if(situations[current_situation][current_num][1][activate_rng_mask(2)][2]==1){
+        document.getElementById('question').innerHTML = "<b>Верно! Ты сохранил безопасность!</b>";
+        document.getElementById('b3').style.backgroundImage = "linear-gradient(144deg, #009900, #009900 50%, #009900)";
+    }
+    if(situations[current_situation][current_num][1][activate_rng_mask(2)][2]==0){
+        document.getElementById('question').innerHTML = "<b>Осторожно, это может быть опасно!</b>";
+        document.getElementById('b3').style.backgroundImage = "linear-gradient(144deg, #999900, #999900 50%, #999900)";
+    }
+    if(situations[current_situation][current_num][1][activate_rng_mask(2)][2]==-1){
+        document.getElementById('question').innerHTML = "<b>Твоя безопасность под угрозой!<br>Сертификат не получишь.</b>";
+        document.getElementById('b3').style.backgroundImage = "linear-gradient(144deg, #990000, #990000 50%, #990000)";
+    }
+
+    await sleep(3);
+    changeTo(situations[current_situation][current_num][1][activate_rng_mask(2)][1]);
+}
+
+window.onload = initialize_rng;

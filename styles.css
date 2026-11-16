@@ -104,8 +104,8 @@ h4{
     text-align: center;
     font-family: "Oswald";
     font-size: 2vw;
-    height: 1vw;
-    margin-top: auto;
+    height: 1vh;
+    margin-top: 2vh;
 }
 
 
@@ -120,17 +120,15 @@ h4{
         font-size: 1.5vh;
         line-height: 2.25vh;
     }
-    h2{
-        font-size: 2.5vh;
-    }
-    h3{
-        font-size: 2.1vh;
+    h4{
+        font-size: 2vh;
     }
     select{
-        font-size: 3vh;
+        font-size: 2.5vh;
+        line-height: 2.5vh;
     }
     button{
-        font-size: 3vh;
-        line-height: 4vh;
+        font-size: 2vh;
+        line-height: 2.5vh;
     }
 }

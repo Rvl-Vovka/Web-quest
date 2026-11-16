@@ -86,6 +86,15 @@ function activate_rng_mask(id){
     }
 }
 
+function vw_vh_detect(size){
+    if(window.innerWidth<767){
+        return `${size*2}vh`;
+    }
+    else{
+        return `${size}vw`;
+    }
+}
+
 situations=[
 [ // 1
     ["Ты взял пакет и пошёл по адресу. Там тебя уже ждали сотрудники милиции. Тебя задержали, а родителей вызвали в отделение. Вербовщик остался в стороне, потому что все риски он переложил на тебя.<br><br><b>Итог:</b> Вербовщики используют детей, потому что рассчитывают на то, что те испугаются и промолчат. «Назад пути нет» всегда обман. Выход есть, и это разговор со взрослым.<br><br><b>Кнопка SOS:</b> «Что делать, если ты уже согласился? Немедленно прекрати общение, заблокируй аккаунт, расскажи родителям или педагогу. Позвони в милицию по телефону 102. Ты можешь предотвратить беду».",
@@ -347,7 +356,7 @@ rng_mask_2=[
 ];
 function activateEnding(ending){
     document.getElementById('question').innerHTML = situations[current_situation][0][ending-1];
-    document.getElementById('question').style.fontSize = "2vw";
+    document.getElementById('question').style.fontSize = `${vw_vh_detect(2)}`;
     document.getElementById('b1').style.display = "none";
     document.getElementById('b2').style.display = "none";
     document.getElementById('b3').style.display = "none";
@@ -404,6 +413,7 @@ function changeTo(num){
         document.getElementById('b2').style.height = `${max_height}px`;
         document.getElementById('b3').style.height = `${max_height}px`;
     }
+    window.scrollTo(0, 0);
 }
 function initialize(){
     perfect_completion = true;
@@ -412,7 +422,7 @@ function initialize(){
     document.getElementById('b3').style.display = "";
     document.getElementById('situation').style.display = "none";
     document.getElementById('start').style.display = "none";
-    document.getElementById('question').style.fontSize = "2.5vw";
+    document.getElementById('question').style.fontSize = `${vw_vh_detect(2.5)}`;
     current_situation=document.getElementById('situation').value-1;
     changeTo(0);
 }

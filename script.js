@@ -356,7 +356,7 @@ rng_mask_2=[
 ];
 function activateEnding(ending){
     document.getElementById('question').innerHTML = situations[current_situation][0][ending-1];
-    document.getElementById('question').style.fontSize = `${vw_vh_detect(2, 4)}`;
+    document.getElementById('question').style.fontSize = `${vw_vh_detect(2, 3)}`;
     document.getElementById('b1').style.display = "none";
     document.getElementById('b2').style.display = "none";
     document.getElementById('b3').style.display = "none";
@@ -422,7 +422,7 @@ function initialize(){
     document.getElementById('b3').style.display = "";
     document.getElementById('situation').style.display = "none";
     document.getElementById('start').style.display = "none";
-    document.getElementById('question').style.fontSize = `${vw_vh_detect(2.5, 4)}`;
+    document.getElementById('question').style.fontSize = `${vw_vh_detect(2.5, 3)}`;
     current_situation=document.getElementById('situation').value-1;
     changeTo(0);
 }

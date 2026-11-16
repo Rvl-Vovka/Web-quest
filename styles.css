@@ -29,7 +29,6 @@ div{
 }
 h1{
     color: #4e4e4e;
-    text-align: center;
     font-size: 1.2vw;
     text-align: justify;
     margin-left: 20vw;
@@ -112,6 +111,7 @@ h4{
 
 @media (max-width: 767px) {
     h1{
+        text-align: left;
         font-size: 3vh;
         margin-left: 5vw;
         margin-right: 5vw;
@@ -127,10 +127,10 @@ h4{
         font-size: 2.1vh;
     }
     select{
-        font-size: 4vh;
+        font-size: 3vh;
     }
     button{
-        font-size: 4vh;
-        line-height: 5vh;
+        font-size: 3vh;
+        line-height: 4vh;
     }
 }

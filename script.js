@@ -86,12 +86,12 @@ function activate_rng_mask(id){
     }
 }
 
-function vw_vh_detect(size){
+function vw_vh_detect(size_pc, size_phone){
     if(window.innerWidth<767){
-        return `${size*2}vh`;
+        return `${size_phone}vh`;
     }
     else{
-        return `${size}vw`;
+        return `${size_pc}vw`;
     }
 }
 
@@ -192,7 +192,7 @@ situations=[
      "Ты не стал ничего отправлять, заблокировал менеджера и пожаловался на канал. Через пару дней объявление исчезло.<br><br><b>Итог:</b> Настоящая работа не требует залога, тайны и фото документа в личке у незнакомца. Школьнику работу оформляют только вместе со взрослыми.<br><br><b>SOS:</b> Увидел такое объявление? Не отвечай, нажми «Пожаловаться» и покажи его взрослым.<br><b>Милиция:</b> 102.",
      "Ты пришёл по адресу и поднял свёрток. Тебя уже ждали сотрудники милиции. Родителей вызвали в отделение. А «менеджер» исчез из Telegram и удалил переписку: все риски он переложил на тебя.<br><br><b>Итог:</b> «Лёгкая работа» для подростка называется вербовкой. Курьеров находят именно потому что они не знают, что везут, и их легко подставить. «Назад пути нет» – это обман.<br><br><b>SOS:</b> Уже согласился? Прекрати общение, расскажи взрослым и позвони 102. Чем раньше, тем лучше."
     ],
-    ["<em>Ты листаешь Telegram и видишь объявление: «Курьер от 12 лет. 500 рублей за смену, без опыта, нужен только телефон». Ты пишешь в ‚личку, и менеджер отвечает сразу:</em><br><br>«Привет! Работа простая: забираешь вещь в одном месте, оставляешь в другом. Для начала пришли фото паспорта или школьного пропуска и селфи с ним».",
+    ["<em>Ты листаешь Telegram и видишь объявление: «Курьер от 12 лет. 500 рублей за смену, без опыта, нужен только телефон». Ты пишешь в личку, и менеджер отвечает сразу:</em><br><br>«Привет! Работа простая: забираешь вещь в одном месте, оставляешь в другом. Для начала пришли фото паспорта или школьного пропуска и селфи с ним».",
         [["Документы незнакомцу не отправлю. Это подозрительно", 1, 1],
         ["А что именно нужно возить?", 2, 0],
         ["Отправить фото документа и селфи", 3, -1]]],
@@ -356,7 +356,7 @@ rng_mask_2=[
 ];
 function activateEnding(ending){
     document.getElementById('question').innerHTML = situations[current_situation][0][ending-1];
-    document.getElementById('question').style.fontSize = `${vw_vh_detect(2)}`;
+    document.getElementById('question').style.fontSize = `${vw_vh_detect(2, 4)}`;
     document.getElementById('b1').style.display = "none";
     document.getElementById('b2').style.display = "none";
     document.getElementById('b3').style.display = "none";
@@ -422,7 +422,7 @@ function initialize(){
     document.getElementById('b3').style.display = "";
     document.getElementById('situation').style.display = "none";
     document.getElementById('start').style.display = "none";
-    document.getElementById('question').style.fontSize = `${vw_vh_detect(2.5)}`;
+    document.getElementById('question').style.fontSize = `${vw_vh_detect(2.5, 4)}`;
     current_situation=document.getElementById('situation').value-1;
     changeTo(0);
 }
